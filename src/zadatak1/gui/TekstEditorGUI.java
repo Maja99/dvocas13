@@ -16,12 +16,14 @@ import zadatak1.poslovna_logika.TekstDemo;
 import java.awt.FlowLayout;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 
 public class TekstEditorGUI {
 
 	private JFrame frmeditor;
 	private JTextField textFieldUnosImena;
+	private JTextArea textAreaEditor;
 
 	/**
 	 * Launch the application.
@@ -52,14 +54,14 @@ public class TekstEditorGUI {
 	private void initialize() {
 		frmeditor = new JFrame();
 		frmeditor.setTitle("Editor 2");
-		frmeditor.setBounds(100, 100, 450, 300);
+		frmeditor.setBounds(100, 100, 696, 480);
 		frmeditor.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmeditor.getContentPane().setLayout(new BorderLayout(0, 0));
 		
 		JScrollPane scrollPane = new JScrollPane();
 		frmeditor.getContentPane().add(scrollPane, BorderLayout.CENTER);
 		
-		JTextArea textAreaEditor = new JTextArea();
+		textAreaEditor = new JTextArea();
 		scrollPane.setViewportView(textAreaEditor);
 		
 		JPanel panel = new JPanel();
@@ -80,8 +82,13 @@ public class TekstEditorGUI {
 			public void actionPerformed(ActionEvent e) {
 				TekstDemo td = new TekstDemo();
 				String ime = textFieldUnosImena.getText();
-				String tekst = td.ucitajTekst(ime);
-				textAreaEditor.setText(tekst);
+				try {
+					String tekst = td.ucitajTekst(ime);
+					textAreaEditor.setText(tekst);
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+
 			}
 		});
 		btnUcitaj.setPreferredSize(new Dimension(100, 26));
@@ -102,7 +109,12 @@ public class TekstEditorGUI {
 				TekstDemo td = new TekstDemo();
 				String tekst = textAreaEditor.getText();
 				String ime = textFieldUnosImena.getText();
-				td.upisiTekst(ime, tekst);				
+				try {
+					td.upisiTekst(ime, tekst);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}				
 			}
 		});
 		btnSacuvaj.setPreferredSize(new Dimension(100, 26));
@@ -114,8 +126,24 @@ public class TekstEditorGUI {
 				System.exit(0);				
 			}
 		});
+		
+		JButton btnZameni = new JButton("Zameni");
+		btnZameni.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ZameniDialog dialog = new ZameniDialog(TekstEditorGUI.this);
+				dialog.setVisible(true);
+			}
+		});
+		btnZameni.setPreferredSize(new Dimension(100, 23));
+		panel.add(btnZameni);
 		btnIzadji.setPreferredSize(new Dimension(100, 26));
 		panel.add(btnIzadji);
+	}
+
+	public void zameniString(String staSeMenja, String zamena) {
+		String tekst = textAreaEditor.getText();
+		String noviTekst = tekst.replaceAll(staSeMenja, zamena);
+		textAreaEditor.setText(noviTekst);
 	}
 
 }

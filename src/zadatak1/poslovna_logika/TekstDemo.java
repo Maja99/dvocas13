@@ -4,8 +4,7 @@ import java.io.*;
 
 public class TekstDemo {
 	
-	public String ucitajTekst(String nazivFajla) {
-		try {
+	public String ucitajTekst(String nazivFajla) throws IOException {
 			BufferedReader in = new BufferedReader(new FileReader(nazivFajla));
 			boolean kraj = false;
 			String tekst = "";
@@ -18,18 +17,11 @@ public class TekstDemo {
 			}
 			in.close();
 			return tekst;
-		} catch (Exception e) {
-			return null;
-		}
 	}
 
-	public void upisiTekst(String nazivFajla, String tekst) {
-		try {
+	public void upisiTekst(String nazivFajla, String tekst) throws IOException {
 			PrintWriter out = new PrintWriter(new FileWriter(nazivFajla));
 			out.write(tekst);
 			out.close();
-		} catch (Exception e) {
-			System.out.println("GRESKA: " + e.getMessage());
-		}
 	}
 }
