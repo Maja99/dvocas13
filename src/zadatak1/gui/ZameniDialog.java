@@ -42,28 +42,28 @@ public class ZameniDialog extends JDialog {
 	 * Create the dialog.
 	 */
 	public ZameniDialog() {
-		setTitle("Zamena stringa");
-		setBounds(100, 100, 450, 300);
+		setTitle("Zamena teksta");
+		setBounds(100, 100, 353, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("String koji se menja:");
-		lblNewLabel.setBounds(28, 37, 113, 14);
+		lblNewLabel.setBounds(28, 37, 151, 14);
 		contentPanel.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("String kojim se menja:");
-		lblNewLabel_1.setBounds(28, 90, 113, 14);
+		lblNewLabel_1.setBounds(28, 90, 151, 14);
 		contentPanel.add(lblNewLabel_1);
 		
 		replaceField = new JTextField();
-		replaceField.setBounds(151, 34, 127, 20);
+		replaceField.setBounds(189, 34, 127, 20);
 		contentPanel.add(replaceField);
 		replaceField.setColumns(10);
 		
 		replaceWithField = new JTextField();
-		replaceWithField.setBounds(151, 87, 127, 20);
+		replaceWithField.setBounds(189, 87, 127, 20);
 		contentPanel.add(replaceWithField);
 		replaceWithField.setColumns(10);
 		{
