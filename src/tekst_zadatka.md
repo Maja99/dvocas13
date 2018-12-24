@@ -32,7 +32,7 @@ trebalo bi da se ovaj centralni deo poveća/smanji a da ostale komponente ostanu
 
 5. Kada se klikne dugme **Zameni** da se otvori dijalog u koji korisnik unosi string koji treba zameniti, i string kojim treba zameniti, a zatim nakon klika na dugme **OK** u dijalogu, vrši zamenu svih pojavljivanja stringa u tekstu u editoru.
 
-6. Kada se klikne na dugme **Izadji**, prekida se izvršavanje programa.
+6. Kada se klikne na dugme **Izadji**, prekida se izvršavanje programa, a prethodno pitati korisnika da li zeli da izadje iz programa.
 
 ![Dialog zamena](../images/zamena-dialog.png)
 
