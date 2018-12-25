@@ -20,8 +20,10 @@ import java.awt.event.ActionEvent;
 
 public class TekstEditorGUI extends JFrame {
 
+	private static final long serialVersionUID = 1L;
+
 	private TekstDemo tekstDemo = new TekstDemo();
-	
+
 	private JPanel contentPane;
 	private JPanel panel;
 	private JTextArea textAreaEditor;
@@ -80,18 +82,21 @@ public class TekstEditorGUI extends JFrame {
 		}
 		return panel;
 	}
+
 	private JTextArea getTextAreaEditor() {
 		if (textAreaEditor == null) {
 			textAreaEditor = new JTextArea();
 		}
 		return textAreaEditor;
 	}
+
 	private JLabel getLblImeFajla() {
 		if (lblImeFajla == null) {
 			lblImeFajla = new JLabel("Ime fajla:");
 		}
 		return lblImeFajla;
 	}
+
 	private JTextField getTextFieldUnosImena() {
 		if (textFieldUnosImena == null) {
 			textFieldUnosImena = new JTextField();
@@ -100,6 +105,7 @@ public class TekstEditorGUI extends JFrame {
 		}
 		return textFieldUnosImena;
 	}
+
 	private JButton getBtnUcitaj() {
 		if (btnUcitaj == null) {
 			btnUcitaj = new JButton("Ucitaj");
@@ -110,15 +116,15 @@ public class TekstEditorGUI extends JFrame {
 						String tekst = tekstDemo.ucitajTekst(ime);
 						textAreaEditor.setText(tekst);
 					} catch (IOException e1) {
-						e1.printStackTrace();
+						JOptionPane.showMessageDialog(null, "Greska prilikom ucitavanja teksta.", "Greska", JOptionPane.ERROR_MESSAGE);
 					}
-
 				}
 			});
 			btnUcitaj.setPreferredSize(new Dimension(100, 23));
 		}
 		return btnUcitaj;
 	}
+
 	private JButton getBtnObrisi() {
 		if (btnObrisi == null) {
 			btnObrisi = new JButton("Obrisi");
@@ -131,6 +137,7 @@ public class TekstEditorGUI extends JFrame {
 		}
 		return btnObrisi;
 	}
+
 	private JButton getBtnSacuvaj() {
 		if (btnSacuvaj == null) {
 			btnSacuvaj = new JButton("Sacuvaj");
@@ -139,17 +146,17 @@ public class TekstEditorGUI extends JFrame {
 					String tekst = textAreaEditor.getText();
 					String ime = textFieldUnosImena.getText();
 					try {
-						 tekstDemo.upisiTekst(ime, tekst);
+						tekstDemo.upisiTekst(ime, tekst);
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}		
+						JOptionPane.showMessageDialog(null, "Greska prilikom upisivanja teksta.", "Greska", JOptionPane.ERROR_MESSAGE);
+					}
 				}
 			});
 			btnSacuvaj.setPreferredSize(new Dimension(100, 23));
 		}
 		return btnSacuvaj;
 	}
+
 	private JButton getBtnZameni() {
 		if (btnZameni == null) {
 			btnZameni = new JButton("Zameni");
@@ -163,6 +170,7 @@ public class TekstEditorGUI extends JFrame {
 		}
 		return btnZameni;
 	}
+
 	private JButton getBtnAnalizaTeksta() {
 		if (btnAnalizaTeksta == null) {
 			btnAnalizaTeksta = new JButton("Analiza");
@@ -172,32 +180,34 @@ public class TekstEditorGUI extends JFrame {
 					String tekst = textAreaEditor.getText();
 					int brojSlova = tekst.length();
 					int brojReci = tekst.split(" ").length;
-				    JOptionPane.showMessageDialog(null, "Broj znakova u tekst: "+brojSlova+ " Broj reci: "+brojReci , "Analiza teksta",
-				            JOptionPane.INFORMATION_MESSAGE);
-				
+
+					JOptionPane.showMessageDialog(null,
+							"Broj znakova u tekstu: " + brojSlova + ". Broj reci: " + brojReci, "Analiza teksta",
+							JOptionPane.INFORMATION_MESSAGE);
 				}
 			});
 			btnAnalizaTeksta.setPreferredSize(new Dimension(100, 23));
 		}
 		return btnAnalizaTeksta;
 	}
+
 	private JButton getBtnIzadji() {
 		if (btnIzadji == null) {
 			btnIzadji = new JButton("Izadji");
 			btnIzadji.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-				    int response = JOptionPane.showConfirmDialog(null, "Da li zelite da izadjete iz programa?", "Potvrda",
-				            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-				        if (response == JOptionPane.YES_OPTION) {
-				        	System.exit(0);	
-				        }
+					int response = JOptionPane.showConfirmDialog(null, "Da li zelite da izadjete iz programa?",
+							"Potvrda", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+					if (response == JOptionPane.YES_OPTION) {
+						System.exit(0);
+					}
 				}
 			});
 			btnIzadji.setPreferredSize(new Dimension(100, 23));
 		}
 		return btnIzadji;
 	}
-	
+
 	public void zameniString(String staSeMenja, String zamena) {
 		String tekst = textAreaEditor.getText();
 		String noviTekst = tekst.replaceAll(staSeMenja, zamena);
